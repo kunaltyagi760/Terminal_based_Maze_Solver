@@ -1,3 +1,10 @@
+# Constants for maze characters
+WALL = '\033[91m█\033[0m'  # Red color
+OPEN_SPACE = '\033[94m◌\033[0m'  # Blue color
+START = '\033[92mS\033[0m'  # Green color
+END = '\033[92mE\033[0m'  # Green color
+PATH = '\033[92m◍\033[0m'  # Green color
+
 def main():
 
     # while loop will run till the user doesn't to exit the game.
