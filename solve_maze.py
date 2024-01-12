@@ -1,5 +1,5 @@
 import random
-# import random to add walls inside the maze
+# import random to add walls inside the maze cell.
 
 
 # Constants for maze characters
@@ -35,9 +35,29 @@ def generate_maze(n, wall_percentage=25):
 
     return maze
 
+def print_maze(maze):
+    
+    # Prints the maze in the terminal.
+
+    # Parameters:
+    #  maze: The maze to be printed.
+    
+    for row in maze:
+
+        # colored_str string is printed before and after every row of maze to enhance maze representation in terminal alse maze cell is clearly visible.
+
+        colored_str = (('\033[91m' + "+---" + '\033[0m') * len(maze)) + '\033[91m' + "+" + '\033[0m'
+        print(colored_str)
+        for cell in row:
+            print("|", end=" ")
+            print(cell, end=" ")
+        print("|", end=" ")
+        print()
+    print(colored_str)
+
 def main():
 
-    # while loop will run till the user doesn't to exit the game.
+    # while loop will run till the user doesn't want to exit the game.
     while True:
         n = int(input("Enter the size of the maze (n x n): "))
 
@@ -46,8 +66,8 @@ def main():
             print("\nInvalid input, Please enter the size of maze (n x n) > 1")
             n = int(input("\nEnter the size of the maze (n x n): "))
 
-        # maze = generate_maze(n)
-        # print("\nGenerated Maze:")
-        # print_maze(maze)
+        maze = generate_maze(n)
+        print("\nGenerated Maze:")
+        print_maze(maze)
 
 main()
