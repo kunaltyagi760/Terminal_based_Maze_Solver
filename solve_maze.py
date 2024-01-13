@@ -1,5 +1,5 @@
 import random
-# import random to add walls inside the maze cell.
+# import random to add walls inside the maze.
 
 
 # Constants for maze characters
@@ -54,6 +54,54 @@ def print_maze(maze):
         print("|", end=" ")
         print()
     print(colored_str)
+
+def find_path(maze, cur_row, cur_col, size):
+    
+    # Finds a path from the start to the end using backtracking.
+
+    # Parameters:
+    #  maze: The maze.
+    #  cur_row: Current row.
+    #  cur_col: Current column.
+    #  size: Size of the maze.
+
+    # Returns:
+    # - True if a path is found, False otherwise.
+    
+    visited_cell = []
+     # Those cell are already visited in previous function calls to find a path this visited_cell array store the values of their cur_row and cur_col. 
+
+    def _find_path(cur_row, cur_col):
+        nonlocal visited_cell
+
+        if cur_row < 0 or cur_row >= size or cur_col < 0 or cur_col >= size or maze[cur_row][cur_col] == WALL or maze[cur_row][cur_col] == START or [cur_row, cur_col] in visited_cell:
+            return False
+
+        if maze[cur_row][cur_col] == END:
+            return True
+
+        # Explore in all directions
+        maze[cur_row][cur_col] = PATH
+        visited_cell.append([cur_row, cur_col])
+
+        if _find_path(cur_row, cur_col + 1):
+            return True
+
+        if _find_path(cur_row + 1, cur_col):
+            return True
+
+        if _find_path(cur_row, cur_col - 1):
+            return True
+
+        if _find_path(cur_row - 1, cur_col):
+            return True
+
+        maze[cur_row][cur_col] = OPEN_SPACE  # Backtrack
+        visited_cell.pop()
+
+        return False
+
+    return _find_path(cur_row, cur_col)
 
 def main():
 
