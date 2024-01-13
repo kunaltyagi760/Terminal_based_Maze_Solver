@@ -118,4 +118,41 @@ def main():
         print("\nGenerated Maze:")
         print_maze(maze)
 
+        user_choice = input("\n1. Print the path\n2. Generate another puzzle\n3. Exit the game\nEnter your choice (1/2/3): ")
+
+        if user_choice == '1':
+            # Find the path
+            if maze[0][1] == OPEN_SPACE:
+                if find_path(maze, 0, 1, n):
+                    print("\nMaze with Path:")
+                    print_maze(maze)
+                else:
+                    print("\nPath not found.")
+
+            elif maze[1][0] == OPEN_SPACE:
+                if find_path(maze, 1, 0, n):
+                    print("\nMaze with Path:")
+                    print_maze(maze)
+                else:
+                    print("\nPath not found.")
+
+            else:
+                print("\nPath not found.")
+
+            user_choice = input("\n1. Generate another puzzle\n2. Exit the game\nEnter your choice (1/2): ")
+
+            if user_choice == '1':
+                continue
+            elif user_choice == '2':
+                break
+            else:
+                print("Invalid choice. Please enter 1 or 2.")
+
+        elif user_choice == '2':
+            continue
+        elif user_choice == '3':
+            break
+        else:
+            print("Invalid choice. Please enter 1, 2, or 3.")
+
 main()
